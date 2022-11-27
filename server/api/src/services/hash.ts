@@ -1,6 +1,6 @@
 import { randomBytes, scryptSync } from 'crypto';
 
-export class APIKey {
+export class Hash {
     static generatekey(size: number = 16) {
         const buffer = randomBytes(size);
         return `${buffer.toString('hex')}`
