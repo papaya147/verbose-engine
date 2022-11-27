@@ -23,14 +23,15 @@ router.post('/auth/signup', [
     const suppliedKey = req.get('key');
     const suppliedSecret = req.get('secret');
 
-    await APIKey.checkKey(suppliedKey, suppliedSecret);
+    const flag = await APIKey.checkKey(suppliedKey, suppliedSecret);
+    if (!flag)
+        throw new BadRequestError('API service unavailable');
 
     const errors = validationResult(req);
     if (!errors.isEmpty())
         throw new RequestValidationError(errors.array());
 
-    const { email, password } = req.body;
-    const phoneNumber: string = req.body.phoneNumber;
+    const { email, phoneNumber, password } = req.body;
 
     if (phoneNumber.length != 10)
         throw new BadRequestError('Phone number must either be empty or 10 digits');
@@ -43,7 +44,7 @@ router.post('/auth/signup', [
     const user = User.build({ email, phoneNumber, password });
     await user.save();
 
-    console.log(user);
+    // create session cookies
 
     res.status(201).send('Created');
 });

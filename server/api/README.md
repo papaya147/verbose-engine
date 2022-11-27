@@ -5,6 +5,7 @@ GET: localhost:4000/api/createkey
     }
 
 GET: localhost:4000/api/checkkey
+Add { key, secret } to header
     Valid:
         Key and secret are valid
 
