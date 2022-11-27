@@ -1,11 +1,16 @@
 import express, { Request, Response } from 'express';
+import { APIKey } from '../models/api-key-model';
 import { Hash } from '../services/hash';
 
 const router = express.Router();
 
-router.get('/api/createkey', (req, res) => {
+router.get('/api/createkey', async (req, res) => {
     const key = Hash.generatekey();
-    const secret = Hash.generateSecretHash(key);
+    const [secret, salt] = Hash.generateSecretHash(key).split('.');
+
+    // API keys last 1 day
+    await APIKey.build({ key, salt }).save();
+
     res.send({ key, secret });
 });
 

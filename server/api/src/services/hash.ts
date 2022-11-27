@@ -12,9 +12,8 @@ export class Hash {
         return `${buffer.toString('hex')}.${salt}`;
     }
 
-    static compareKeys(suppliedKey: string, storedKey: string) {
-        const [hashedPassword, salt] = storedKey.split('.');
+    static compareKeys(suppliedKey: string, hashedPassword: string, salt: string) {
         const buffer = scryptSync(suppliedKey, salt, 32) as Buffer;
-        return buffer.toString('hex') === suppliedKey;
+        return buffer.toString('hex') === hashedPassword;
     }
 }
