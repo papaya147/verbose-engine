@@ -1,10 +1,14 @@
+// modules
 import express, { Request, Response } from 'express';
-import axios from 'axios';
 import { body, validationResult } from 'express-validator';
+
+// errors
 import { BadRequestError } from '../errors/bad-request-error';
 import { RequestValidationError } from '../errors/request-validation-error';
+
+// models
 import { User } from '../models/user-model';
-import { ForwardError } from '../errors/forward-error';
+import { APIKey } from '../middlewares/apikey';
 
 const router = express.Router();
 
@@ -18,15 +22,8 @@ router.post('/auth/signup', [
 ], async (req: Request, res: Response) => {
     const suppliedKey = req.get('key');
     const suppliedSecret = req.get('secret');
-    await axios.get('http://localhost:4000/api/checkkey', {
-        headers: {
-            'key': suppliedKey,
-            'secret': suppliedSecret
-        }
-    }).catch(err => {
-        if (err.response)
-            throw new ForwardError(err.response.status, err.response.data.errors);
-    });
+
+    await APIKey.checkKey(suppliedKey, suppliedSecret);
 
     const errors = validationResult(req);
     if (!errors.isEmpty())

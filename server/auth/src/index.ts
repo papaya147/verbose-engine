@@ -1,14 +1,18 @@
+// modules
 import express from 'express';
 import 'express-async-errors';
 import mongoose from 'mongoose';
 import { json } from 'body-parser';
 
+// errors
 import { NotFoundError } from './errors/not-found-error';
 import { errorHandler } from './middlewares/error-handler';
+
+// routes
 import { signUpRouter } from './routes/signup';
 
 const app = express();
-app.use(json())
+app.use(json());
 
 app.use(signUpRouter);
 
