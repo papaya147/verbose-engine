@@ -1,5 +1,10 @@
+// modules
 import express, { Request, Response } from 'express';
+
+// models
 import { APIKey } from '../models/api-key-model';
+
+// services
 import { Hash } from '../services/hash';
 
 const router = express.Router();

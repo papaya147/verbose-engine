@@ -1,6 +1,13 @@
+// modules
 import express from 'express';
+
+// errors
 import { InvalidKeyError } from '../errors/invalid-api-key-error';
+
+//models
 import { APIKey } from '../models/api-key-model';
+
+// services
 import { Hash } from '../services/hash';
 
 const router = express.Router();
@@ -20,7 +27,7 @@ router.get('/api/checkkey', async (req, res) => {
     if (!Hash.compareKeys(suppliedKey, suppliedSecret, storedAPIKey.salt))
         throw new InvalidKeyError('Key and secret do not correspond')
 
-    res.send('Key and secret are valid');
+    res.send({ message: 'Key and secret are valid', valid: true });
 });
 
 export { router as checkAPIKeyRouter };

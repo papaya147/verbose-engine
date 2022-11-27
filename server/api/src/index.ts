@@ -1,13 +1,16 @@
+// modules
 import express from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
 import mongoose from 'mongoose';
 
+// routes
 import { createAPIKeyRouter } from './routes/create-api-key';
 import { checkAPIKeyRouter } from './routes/check-api-key';
 
-import { errorHandler } from './middlewares/error-handler';
+// errors
 import { NotFoundError } from './errors/not-found-error';
+import { errorHandler } from './middlewares/error-handler';
 
 const app = express();
 app.use(json());
