@@ -1,24 +1,24 @@
-// modules
 import express from 'express';
 import 'express-async-errors';
 import mongoose from 'mongoose';
 import { json } from 'body-parser';
 import session from 'express-session';
-
-// errors
 import { NotFoundError } from './errors/not-found-error';
 import { errorHandler } from './middlewares/error-handler';
-
-// routes
-import { signUpRouter } from './routes/signup';
+import { checkUserRouter } from './routes/checkuser';
+import { createUserRouter } from './routes/createuser';
+import { changePassRouter } from './routes/changepass';
+import { forgotPassRouter } from './routes/forgotpass';
 
 const app = express();
 app.use(json());
 
-app.use(signUpRouter);
+app.use(checkUserRouter);
+app.use(createUserRouter);
+app.use(changePassRouter);
+app.use(forgotPassRouter);
 
 app.all('*', (req, res) => {
-    req.session.save
     throw new NotFoundError();
 });
 

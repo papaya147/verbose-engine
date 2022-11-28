@@ -1,13 +1,16 @@
 GET: localhost:4000/api/createkey
     {
-        key: string,
-        secret: string
+        "key": string,
+        "secret": string
     }
 
 POST: localhost:4000/api/checkkey
 Add { key, secret } to request body
     Valid:
-        Key and secret are valid
+        {
+            "message": "Key and secret are valid",
+            "valid": true
+        }
 
     Key or Secret not passed:
         {

@@ -1,18 +1,14 @@
-// modules
 import express, { Request, Response } from 'express';
-import { body, validationResult } from 'express-validator';
-
-// errors
+import { body, check, validationResult } from 'express-validator';
 import { BadRequestError } from '../errors/bad-request-error';
 import { RequestValidationError } from '../errors/request-validation-error';
-
-// models
 import { User } from '../models/user-model';
-import { APIKey } from '../middlewares/apikey';
+import { APIKey } from '../services/apikey';
+import { Password } from '../services/password';
 
 const router = express.Router();
 
-router.post('/auth/signup', [
+router.post('/auth/checkuser', [
     body('email')
         .isEmail()
         .withMessage('Email not valid'),
@@ -30,20 +26,16 @@ router.post('/auth/signup', [
     if (!errors.isEmpty())
         throw new RequestValidationError(errors.array());
 
-    const { email, phoneNumber, password } = req.body;
+    const { email, password } = req.body;
 
-    if (phoneNumber.length != 10)
-        throw new BadRequestError('Phone number must either be empty or 10 digits');
+    const user = await User.findOne({ email });
+    if (!user)
+        throw new BadRequestError('Email not found');
 
-    const existingUser = await User.findOne({ email });
+    if (!await Password.compare(user.password, password))
+        throw new BadRequestError('Password incorrect');
 
-    if (existingUser)
-        throw new BadRequestError('Email already exists');
-
-    const user = User.build({ email, phoneNumber, password });
-    await user.save();
-
-    res.status(201).send({ id: user.id, email: user.email });
+    res.status(200).send({ id: user.id, email, valid: true, message: 'valid' });
 });
 
-export { router as signUpRouter };
+export { router as checkUserRouter };

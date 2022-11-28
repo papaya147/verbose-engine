@@ -1,20 +1,12 @@
-// modules
 import express from 'express';
-
-// errors
 import { InvalidKeyError } from '../errors/invalid-api-key-error';
-
-//models
 import { APIKey } from '../models/api-key-model';
-
-// services
 import { Hash } from '../services/hash';
 
 const router = express.Router();
 
-router.get('/api/checkkey', async (req, res) => {
-    const suppliedKey = req.get('key');
-    const suppliedSecret = req.get('secret');
+router.post('/api/checkkey', async (req, res) => {
+    const { key: suppliedKey, secret: suppliedSecret } = req.body;
 
     if (!suppliedKey || !suppliedSecret)
         throw new InvalidKeyError('Key or secret not passed');
