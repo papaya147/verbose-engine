@@ -33,7 +33,11 @@ router.put('/auth/changepass', [
     if (!mongoRes)
         throw new BadRequestError('ID and email do not correspond')
 
-    res.send({ id, email, message: 'updated' });
+    res.send({
+        id,
+        email,
+        message: 'updated'
+    });
 });
 
 export { router as changePassRouter };

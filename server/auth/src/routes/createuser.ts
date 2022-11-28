@@ -25,7 +25,7 @@ router.post('/auth/createuser', [
     if (!errors.isEmpty())
         throw new RequestValidationError(errors.array());
 
-    const { email, phoneNumber, password } = req.body;
+    const { email, phoneNumber, password, upiAccount, upiName } = req.body;
 
     const isnum = /^\d+$/.test(phoneNumber)
 
@@ -36,10 +36,10 @@ router.post('/auth/createuser', [
     if (existingUser)
         throw new BadRequestError('Email already exists');
 
-    const user = User.build({ email, phoneNumber, password });
+    const user = User.build({ email, phoneNumber, password, upiAccount, upiName });
     await user.save();
 
-    res.status(201).send({ id: user.id, email: user.email, message: 'created' });
+    res.status(201).send({ id: user.id, email, upiAccount, upiName, message: 'created' });
 });
 
 export { router as createUserRouter };
