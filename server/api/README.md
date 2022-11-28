@@ -4,8 +4,8 @@ GET: localhost:4000/api/createkey
         secret: string
     }
 
-GET: localhost:4000/api/checkkey
-Add { key, secret } to header
+POST: localhost:4000/api/checkkey
+Add { key, secret } to request body
     Valid:
         Key and secret are valid
 

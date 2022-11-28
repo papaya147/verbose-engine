@@ -20,8 +20,7 @@ router.post('/auth/signup', [
         .isLength({ min: 4 })
         .withMessage('Password must be at least 4 characters')
 ], async (req: Request, res: Response) => {
-    const suppliedKey = req.get('key');
-    const suppliedSecret = req.get('secret');
+    const { key: suppliedKey, secret: suppliedSecret } = req.body;
 
     const flag = await APIKey.checkKey(suppliedKey, suppliedSecret);
     if (!flag)
@@ -44,9 +43,7 @@ router.post('/auth/signup', [
     const user = User.build({ email, phoneNumber, password });
     await user.save();
 
-    // create session cookies
-
-    res.status(201).send('Created');
+    res.status(201).send({ id: user.id, email: user.email });
 });
 
 export { router as signUpRouter };

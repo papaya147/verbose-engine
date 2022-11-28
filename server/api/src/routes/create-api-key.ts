@@ -14,7 +14,7 @@ router.get('/api/createkey', async (req, res) => {
     const [secret, salt] = Hash.generateSecretHash(key).split('.');
 
     // API keys last 1 day
-    await APIKey.build({ key, salt }).save();
+    await APIKey.build({ secret, salt }).save();
 
     res.send({ key, secret });
 });

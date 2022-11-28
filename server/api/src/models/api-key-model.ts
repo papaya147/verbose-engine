@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
 interface apikeyAttrs {
-    key: string;
+    secret: string;
     salt: string;
 }
 
 interface apikeyDocument extends mongoose.Document {
-    key: string;
+    secret: string;
     salt: string;
 }
 
@@ -15,7 +15,7 @@ interface apikeyModel extends mongoose.Model<apikeyDocument> {
 }
 
 const apikeySchema = new mongoose.Schema({
-    key: {
+    secret: {
         type: String,
         required: true
     },
@@ -25,14 +25,15 @@ const apikeySchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now,
-        expires: 86400
+        default: Date.now
     }
 });
 
 apikeySchema.statics.build = (apiattrs: apikeyAttrs) => {
     return new APIKey(apiattrs);
 };
+
+apikeySchema.index({ createdAt: 1 }, { expireAfterSeconds: 604800 });
 
 const APIKey = mongoose.model<apikeyDocument, apikeyModel>('APIKey', apikeySchema);
 

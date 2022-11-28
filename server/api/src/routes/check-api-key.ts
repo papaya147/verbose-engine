@@ -19,12 +19,12 @@ router.get('/api/checkkey', async (req, res) => {
     if (!suppliedKey || !suppliedSecret)
         throw new InvalidKeyError('Key or secret not passed');
 
-    const storedAPIKey = await APIKey.findOne({ key: suppliedKey });
+    const storedAPI = await APIKey.findOne({ secret: suppliedSecret });
 
-    if (!storedAPIKey)
-        throw new InvalidKeyError('Key does not exist');
+    if (!storedAPI)
+        throw new InvalidKeyError('Secret does not exist');
 
-    if (!Hash.compareKeys(suppliedKey, suppliedSecret, storedAPIKey.salt))
+    if (!Hash.compareKeys(suppliedKey, suppliedSecret, storedAPI.salt))
         throw new InvalidKeyError('Key and secret do not correspond')
 
     res.send({ message: 'Key and secret are valid', valid: true });

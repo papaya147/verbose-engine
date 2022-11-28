@@ -3,6 +3,7 @@ import express from 'express';
 import 'express-async-errors';
 import mongoose from 'mongoose';
 import { json } from 'body-parser';
+import session from 'express-session';
 
 // errors
 import { NotFoundError } from './errors/not-found-error';
@@ -17,6 +18,7 @@ app.use(json());
 app.use(signUpRouter);
 
 app.all('*', (req, res) => {
+    req.session.save
     throw new NotFoundError();
 });
 
