@@ -35,14 +35,7 @@ router.post('/auth/checkuser', [
     if (!await Password.compare(user.password, password))
         throw new BadRequestError('Password incorrect');
 
-    res.status(200).send({
-        id: user.id,
-        email,
-        upiAccount: user.upiAccount,
-        upiName: user.upiName,
-        valid: true,
-        message: 'valid'
-    });
+    res.status(200).send({ valid: true, message: 'corect' });
 });
 
 export { router as checkUserRouter };

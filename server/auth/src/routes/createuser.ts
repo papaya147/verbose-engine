@@ -13,7 +13,13 @@ router.post('/auth/createuser', [
         .withMessage('Email not valid'),
     body('password')
         .isLength({ min: 4 })
-        .withMessage('Password must be at least 4 characters')
+        .withMessage('Password must be at least 4 characters'),
+    body('upiAccount')
+        .matches(/.+@.+/)
+        .withMessage('UPI account invalid'),
+    body('upiName')
+        .isAlphanumeric('en-US', { ignore: '\s' })
+        .withMessage('UPI name invalid')
 ], async (req: Request, res: Response) => {
     const { key: suppliedKey, secret: suppliedSecret } = req.body;
 
@@ -39,7 +45,7 @@ router.post('/auth/createuser', [
     const user = User.build({ email, phoneNumber, password, upiAccount, upiName });
     await user.save();
 
-    res.status(201).send({ id: user.id, email, upiAccount, upiName, message: 'created' });
+    res.status(201).send({ message: 'created' });
 });
 
 export { router as createUserRouter };

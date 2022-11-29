@@ -6,15 +6,25 @@ import { User } from '../models/user-model';
 import { APIKey } from '../services/apikey';
 import { Email } from '../services/email';
 import { ForwardError } from '../errors/forward-error';
+import { body, validationResult } from 'express-validator';
+import { RequestValidationError } from '../errors/request-validation-error';
 
 const router = express.Router();
 
-router.post('/auth/forgotpass', async (req: Request, res: Response) => {
+router.post('/auth/forgotpass', [
+    body('email')
+        .isEmail()
+        .withMessage('Email not valid')
+], async (req: Request, res: Response) => {
     const { key: suppliedKey, secret: suppliedSecret } = req.body;
 
     const flag = await APIKey.checkKey(suppliedKey, suppliedSecret);
     if (!flag)
         throw new BadRequestError('API service unavailable');
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+        throw new RequestValidationError(errors.array());
 
     const { email } = req.body;
 
