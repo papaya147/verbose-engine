@@ -12,10 +12,7 @@ router.post('/auth/fetchuser', [
     body('id')
         .isLength({ min: 24, max: 24 })
         .isHexadecimal()
-        .withMessage('ID should be a 24 character hexadecimal value'),
-    body('email')
-        .isEmail()
-        .withMessage('Email not valid')
+        .withMessage('ID should be a 24 character hexadecimal value')
 ], async (req: Request, res: Response) => {
     const { key: suppliedKey, secret: suppliedSecret } = req.body;
 
@@ -27,16 +24,16 @@ router.post('/auth/fetchuser', [
     if (!errors.isEmpty())
         throw new RequestValidationError(errors.array());
 
-    const { id, email } = req.body;
+    const { id } = req.body;
 
     const idObject = new mongoose.Types.ObjectId(id);
-    const user = await User.findOne({ _id: idObject, email });
+    const user = await User.findById({ _id: idObject });
     if (!user)
-        throw new BadRequestError('ID and email do not correspond');
+        throw new BadRequestError('ID does not exist');
 
     res.status(200).send({
-        id: user.id,
-        email,
+        id,
+        email: user.email,
         upiAccount: user.upiAccount,
         upiName: user.upiName,
         message: 'fetched'

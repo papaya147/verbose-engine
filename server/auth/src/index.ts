@@ -4,11 +4,12 @@ import mongoose from 'mongoose';
 import { json } from 'body-parser';
 import { NotFoundError } from './errors/not-found-error';
 import { errorHandler } from './middlewares/error-handler';
-import { checkUserRouter } from './routes/checkuser';
-import { createUserRouter } from './routes/createuser';
-import { changePassRouter } from './routes/changepass';
-import { forgotPassRouter } from './routes/forgotpass';
-import { fetchUserRouter } from './routes/fetchuser';
+import { checkUserRouter } from './routes/check-user';
+import { createUserRouter } from './routes/create-user';
+import { changePassRouter } from './routes/change-password';
+import { forgotPassRouter } from './routes/forgot-password';
+import { fetchUserRouter } from './routes/fetch-user';
+import { getSaltRouter } from './routes/get-salt';
 
 const app = express();
 app.use(json());
@@ -18,6 +19,7 @@ app.use(createUserRouter);
 app.use(changePassRouter);
 app.use(forgotPassRouter);
 app.use(fetchUserRouter);
+app.use(getSaltRouter);
 
 app.all('*', (req, res) => {
     throw new NotFoundError();

@@ -33,7 +33,7 @@ router.post('/auth/createuser', [
 
     const { email, phoneNumber, password, upiAccount, upiName } = req.body;
 
-    const isnum = /^\d+$/.test(phoneNumber)
+    const isnum = /^\d+$/.test(phoneNumber);
 
     if (phoneNumber.length !== 0 && (phoneNumber.length !== 10 || !isnum))
         throw new BadRequestError('Phone number must either be empty or 10 digits');
