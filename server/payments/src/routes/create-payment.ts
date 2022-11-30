@@ -35,6 +35,17 @@ router.post('/payments/createpayment', [
 
     const { id: userId, phoneNumber, name, amount, withQR } = req.body;
 
+    const user = await axios.post('http://localhost:4001/auth/fetchuser', {
+        key: suppliedKey,
+        secret: suppliedSecret,
+        id: userId
+    }).catch(err => {
+        if (err.response)
+            throw new ForwardError(err.response.status, err.response.data.errors);
+    });
+    if (!user)
+        throw new BadRequestError('User ID does not exist');
+
     const phone = await Phone.findOne({ phoneNumber });
     let phoneId;
     if (!phone) {
@@ -73,7 +84,7 @@ router.post('/payments/createpayment', [
 
         res.status(201).send(qr.data);
     } else
-        res.status(201).send({ message: 'Created' });
+        res.status(201).send({ message: 'created' });
 });
 
 export { router as createPaymentRouter };

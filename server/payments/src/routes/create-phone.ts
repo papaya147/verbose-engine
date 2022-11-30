@@ -34,7 +34,7 @@ router.post('/payments/createphone', [
     const phone = Phone.build({ phoneNumber, name });
     await phone.save();
 
-    res.status(201).send({ id: phone.id, message: 'Created' });
+    res.status(201).send({ id: phone.id, message: 'created' });
 })
 
 export { router as createPhoneRouter };

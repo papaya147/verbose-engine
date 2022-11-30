@@ -31,9 +31,10 @@ router.post('/payments/phone', [
     if (phone.length === 0)
         throw new BadRequestError('Phone number does not exist on servers');
 
-    res.send(phone.map(data => {
+    const phoneArray = phone.map(data => {
         return { phoneNumber: data.phoneNumber, name: data.name };
-    }));
+    });
+    res.send({ phoneArray });
 });
 
 export { router as getPhoneRouter };

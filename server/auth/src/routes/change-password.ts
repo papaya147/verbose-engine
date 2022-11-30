@@ -39,14 +39,13 @@ router.put('/auth/changepass', [
 
     const user = await User.findOne({ _id: id, email });
     if (!user)
-        throw new BadRequestError('Email not found');
+        throw new BadRequestError('ID or email not found');
 
     if (!await Password.compare(user.password, oldPassword))
         throw new BadRequestError('Old password incorrect');
 
     const hashedPassword = await Password.toHash(newPassword);
     const mongoRes = await User.findOneAndUpdate({ _id: idObject, email }, { password: hashedPassword });
-
     if (!mongoRes)
         throw new BadRequestError('ID and email do not correspond')
 

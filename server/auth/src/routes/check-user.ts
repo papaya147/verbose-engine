@@ -4,6 +4,7 @@ import { BadRequestError } from '../errors/bad-request-error';
 import { RequestValidationError } from '../errors/request-validation-error';
 import { User } from '../models/user-model';
 import { APIKey } from '../services/apikey';
+import { Password } from '../services/password';
 
 const router = express.Router();
 
@@ -31,7 +32,7 @@ router.post('/auth/checkuser', [
     if (!user)
         throw new BadRequestError('Email not found');
 
-    if (user.password !== password)
+    if (!await Password.compare(user.password, password))
         throw new BadRequestError('Password incorrect');
 
     res.status(200).send({ valid: true, message: 'correct' });

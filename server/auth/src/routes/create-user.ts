@@ -4,22 +4,14 @@ import { BadRequestError } from '../errors/bad-request-error';
 import { RequestValidationError } from '../errors/request-validation-error';
 import { User } from '../models/user-model';
 import { APIKey } from '../services/apikey';
+import { Password } from '../services/password';
 
 const router = express.Router();
 
 router.post('/auth/createuser', [
     body('email')
         .isEmail()
-        .withMessage('Email not valid'),
-    body('password')
-        .isLength({ min: 4 })
-        .withMessage('Password must be at least 4 characters'),
-    body('upiAccount')
-        .matches(/.+@.+/)
-        .withMessage('UPI account invalid'),
-    body('upiName')
-        .isAlphanumeric('en-US', { ignore: '\s' })
-        .withMessage('UPI name invalid')
+        .withMessage('Email not valid')
 ], async (req: Request, res: Response) => {
     const { key: suppliedKey, secret: suppliedSecret } = req.body;
 
@@ -38,11 +30,19 @@ router.post('/auth/createuser', [
     if (phoneNumber.length !== 0 && (phoneNumber.length !== 10 || !isnum))
         throw new BadRequestError('Phone number must either be empty or 10 digits');
 
+    if (upiAccount && !(/.+@.+/.test(upiAccount)))
+        throw new BadRequestError('UPI account invalid');
+
+    if (upiName && !(/^[a-zA-Z0-9_\s]*$/.test(upiName)))
+        throw new BadRequestError('UPI name invalid');
+
     const existingUser = await User.findOne({ email });
     if (existingUser)
         throw new BadRequestError('Email already exists');
 
-    const user = User.build({ email, phoneNumber, password, upiAccount, upiName });
+    const hashedPassword = await Password.toHash(password);
+
+    const user = User.build({ email, phoneNumber, password: hashedPassword, upiAccount, upiName });
     await user.save();
 
     res.status(201).send({ message: 'created' });

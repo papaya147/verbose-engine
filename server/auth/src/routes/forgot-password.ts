@@ -8,6 +8,7 @@ import { Email } from '../services/email';
 import { ForwardError } from '../errors/forward-error';
 import { body, validationResult } from 'express-validator';
 import { RequestValidationError } from '../errors/request-validation-error';
+import { Password } from '../services/password';
 
 const router = express.Router();
 
@@ -34,25 +35,17 @@ router.post('/auth/forgotpass', [
 
     const password = randomBytes(4).toString('hex');
 
-    const updateRes = await axios.put('http://localhost:4001/auth/changepass',
-        {
-            key: suppliedKey,
-            secret: suppliedSecret,
-            id: user.id,
-            email,
-            password
-        }
-    ).catch(err => {
-        if (err.response)
-            throw new ForwardError(err.response.status, err.response.data.errors);
-    });
+    const hashedPassword = await Password.toHash(password);
+    const mongoRes = await User.findOneAndUpdate({ email }, { password: hashedPassword });
+    if (!mongoRes)
+        throw new BadRequestError('Databse error'); // Database error only can happen here
 
     const content = `
     Your password has been changed to ${password}.
     Change your password as soon as possible.`;
     Email.sendMail(email, 'Change Password Request', content);
 
-    res.status(200).send({ id: user.id, email, message: 'updated and email sent' });
+    res.status(200).send({ email, message: 'updated and email sent' });
 });
 
 export { router as forgotPassRouter };

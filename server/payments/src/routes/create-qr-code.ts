@@ -43,6 +43,9 @@ router.post('/payments/createqr', [
         throw new BadRequestError('ID invalid');
 
     const { upiAccount, upiName } = accountResponse.data;
+    if (!upiAccount || !upiName)
+        throw new BadRequestError('UPI account or name not setup');
+
     const payUrl = `upi://pay?pa=${upiAccount}&pn=${upiName}&cu=INR&am=${amount}`;
 
     qrcode.toString(payUrl, { type: 'svg' }, (err, src) => {

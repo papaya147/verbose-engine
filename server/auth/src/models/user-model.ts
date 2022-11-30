@@ -36,11 +36,11 @@ const userSchema = new mongoose.Schema({
     },
     upiAccount: {
         type: String,
-        required: true
+        required: false
     },
     upiName: {
         type: String,
-        required: true
+        required: false
     },
     createdAt: {
         type: Date,
