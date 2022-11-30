@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-11-30T12:46:01.036Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15" etag="5eYFjLJ25DP9G8znvtiv" version="20.6.0" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2022-11-30T12:48:54.964Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15" etag="M_jmWHuiaemv6CPtpbUl" version="20.6.0" type="github" pages="2">
   <diagram id="1RmCEsvIRTioDbADr_iF" name="API">
     <mxGraphModel dx="1018" dy="633" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -62,7 +62,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="NqIQ0bjF_8kHgQeIpFv1" name="Auth">
-    <mxGraphModel dx="702" dy="437" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="582" dy="362" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -201,6 +201,40 @@
         </mxCell>
         <mxCell id="kQ6USJv74jCyR75qbmSM-8" value="errors: [message: string, field?: string]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;align=center;" vertex="1" parent="1">
           <mxGeometry x="320" y="770" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kQ6USJv74jCyR75qbmSM-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="kQ6USJv74jCyR75qbmSM-12" target="kQ6USJv74jCyR75qbmSM-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="270" y="890" />
+              <mxPoint x="270" y="870" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kQ6USJv74jCyR75qbmSM-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;fontColor=#333333;" edge="1" parent="1" source="kQ6USJv74jCyR75qbmSM-12" target="kQ6USJv74jCyR75qbmSM-17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="270" y="890" />
+              <mxPoint x="270" y="970" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kQ6USJv74jCyR75qbmSM-12" value="POST route: /auth/forgotpassword&lt;br&gt;data:" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="840" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kQ6USJv74jCyR75qbmSM-13" value="key: string&lt;br&gt;secret: string&lt;br&gt;id: string" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="890" width="180" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="kQ6USJv74jCyR75qbmSM-14" value="valid" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="840" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kQ6USJv74jCyR75qbmSM-15" value="id: string, email: string, upiAccount: string, upiName: string, message: &#39;fetched&#39;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="320" y="870" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kQ6USJv74jCyR75qbmSM-16" value="invalid" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="940" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kQ6USJv74jCyR75qbmSM-17" value="errors: [message: string, field?: string]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;align=center;" vertex="1" parent="1">
+          <mxGeometry x="320" y="970" width="160" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
