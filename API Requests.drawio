@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-11-30T13:16:29.097Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15" etag="9WSC3utvyi1typHsEkAO" version="20.6.0" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2022-11-30T13:17:17.145Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15" etag="YooevKiW7GMjK7w9OnEz" version="20.6.0" type="github" pages="4">
   <diagram id="1RmCEsvIRTioDbADr_iF" name="API">
     <mxGraphModel dx="1018" dy="633" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -380,6 +380,14 @@
         <mxCell id="us6wK0LO5WOLgC5l4zXG-8" value="errors: {message: string, field?: string} []" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;align=center;" vertex="1" parent="1">
           <mxGeometry x="474" y="780" width="160" height="50" as="geometry" />
         </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="a55qkwcE8B2Xu8l9Fplu" name="Offers">
+    <mxGraphModel dx="1018" dy="633" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
       </root>
     </mxGraphModel>
   </diagram>
