@@ -1,71 +1,91 @@
-<mxfile host="app.diagrams.net" modified="2022-11-30T12:02:21.262Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15" etag="MBoJZW7qi8smhVCm52EV" version="20.6.0" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2022-11-30T12:09:21.172Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15" etag="Lg_Jha2rMDxhBFvxUBL2" version="20.6.0" type="github" pages="2">
   <diagram id="1RmCEsvIRTioDbADr_iF" name="API">
     <mxGraphModel dx="1018" dy="605" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="eG3wp-GFeY71W6TZEe_d-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" parent="1" source="eG3wp-GFeY71W6TZEe_d-1" target="eG3wp-GFeY71W6TZEe_d-5" edge="1">
+        <mxCell id="eG3wp-GFeY71W6TZEe_d-1" value="GET route: /api/createkey&lt;br&gt;data:" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="160" y="80" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Uq3WP_sXFJW7V8jfuMsD-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="eG3wp-GFeY71W6TZEe_d-4" target="eG3wp-GFeY71W6TZEe_d-6">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="260" y="90" />
-              <mxPoint x="260" y="90" />
+              <mxPoint x="380" y="130" />
+              <mxPoint x="380" y="130" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="eG3wp-GFeY71W6TZEe_d-1" value="GET route: /api/createkey&lt;br&gt;data:" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-          <mxGeometry x="40" y="40" width="160" height="50" as="geometry" />
-        </mxCell>
         <mxCell id="eG3wp-GFeY71W6TZEe_d-4" value="none" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
-          <mxGeometry x="40" y="90" width="160" height="50" as="geometry" />
+          <mxGeometry x="160" y="130" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="eG3wp-GFeY71W6TZEe_d-5" value="valid" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-          <mxGeometry x="320" y="40" width="160" height="50" as="geometry" />
+          <mxGeometry x="440" y="100" width="160" height="30" as="geometry" />
         </mxCell>
         <mxCell id="eG3wp-GFeY71W6TZEe_d-6" value="key: string&lt;br&gt;secret: string" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
-          <mxGeometry x="320" y="90" width="160" height="50" as="geometry" />
+          <mxGeometry x="440" y="130" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="eG3wp-GFeY71W6TZEe_d-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" parent="1" source="eG3wp-GFeY71W6TZEe_d-9" target="eG3wp-GFeY71W6TZEe_d-11" edge="1">
+        <mxCell id="Uq3WP_sXFJW7V8jfuMsD-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="eG3wp-GFeY71W6TZEe_d-9" target="eG3wp-GFeY71W6TZEe_d-12">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="260" y="230" />
-              <mxPoint x="260" y="230" />
+              <mxPoint x="380" y="270" />
+              <mxPoint x="380" y="250" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Uq3WP_sXFJW7V8jfuMsD-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="eG3wp-GFeY71W6TZEe_d-9" target="eG3wp-GFeY71W6TZEe_d-16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="270" />
+              <mxPoint x="380" y="350" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="eG3wp-GFeY71W6TZEe_d-9" value="POST route: /api/checkkey&lt;br&gt;data:" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-          <mxGeometry x="40" y="180" width="160" height="50" as="geometry" />
+          <mxGeometry x="160" y="220" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="eG3wp-GFeY71W6TZEe_d-11" value="valid" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-          <mxGeometry x="320" y="180" width="160" height="50" as="geometry" />
+          <mxGeometry x="440" y="220" width="160" height="30" as="geometry" />
         </mxCell>
         <mxCell id="eG3wp-GFeY71W6TZEe_d-12" value="message: &#39;Key and secret are valid&#39;&lt;br&gt;valid: true" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;align=center;" parent="1" vertex="1">
-          <mxGeometry x="320" y="230" width="160" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="eG3wp-GFeY71W6TZEe_d-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" parent="1" source="eG3wp-GFeY71W6TZEe_d-13" target="eG3wp-GFeY71W6TZEe_d-16" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="260" y="230" />
-              <mxPoint x="260" y="370" />
-            </Array>
-          </mxGeometry>
+          <mxGeometry x="440" y="250" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="eG3wp-GFeY71W6TZEe_d-13" value="key: string&lt;br&gt;secret: string" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
-          <mxGeometry x="40" y="230" width="160" height="50" as="geometry" />
+          <mxGeometry x="160" y="270" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="eG3wp-GFeY71W6TZEe_d-15" value="Key or Secret invalid" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-          <mxGeometry x="320" y="320" width="160" height="50" as="geometry" />
+          <mxGeometry x="440" y="320" width="160" height="30" as="geometry" />
         </mxCell>
         <mxCell id="eG3wp-GFeY71W6TZEe_d-16" value="errors: [message: &#39;Key and secret do not correspond&#39;]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;align=center;" parent="1" vertex="1">
-          <mxGeometry x="320" y="370" width="160" height="50" as="geometry" />
+          <mxGeometry x="440" y="350" width="160" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="NqIQ0bjF_8kHgQeIpFv1" name="Auth">
-    <mxGraphModel dx="1018" dy="605" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="702" dy="417" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="dF4s6cXTQFWUOKhA-1qI-2" value="POST route: /auth/createuser&lt;br&gt;data:" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dF4s6cXTQFWUOKhA-1qI-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="dF4s6cXTQFWUOKhA-1qI-3" target="dF4s6cXTQFWUOKhA-1qI-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="90" />
+              <mxPoint x="300" y="90" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dF4s6cXTQFWUOKhA-1qI-3" value="key: string&lt;br&gt;secret: string&lt;br&gt;email: string&lt;br&gt;phoneNumber: string | undefined&lt;br&gt;password: hashed string&lt;br&gt;upiAccount: string | undefined&lt;br&gt;upiName: string | undefined" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="180" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="dF4s6cXTQFWUOKhA-1qI-4" value="valid" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="60" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dF4s6cXTQFWUOKhA-1qI-5" value="message: &#39;created&#39;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="320" y="90" width="160" height="50" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
