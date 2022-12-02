@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-12-02T16:32:31.609Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15" version="20.6.0" etag="J20XxNQO_OScVfc51d_-" type="github">
+<mxfile host="app.diagrams.net" modified="2022-12-02T16:36:02.058Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15" version="20.6.0" etag="-yy8yKZ43D-FY6ShU1U2" type="github">
   <diagram id="HmW7W3xKRjhBzQUJ8RZe" name="Page-1">
     <mxGraphModel dx="1018" dy="605" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -161,6 +161,46 @@
         </mxCell>
         <mxCell id="5Y48MqjHP31piCoD7qou-71" value="Amount" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="5Y48MqjHP31piCoD7qou-60">
           <mxGeometry x="40" y="200" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5Y48MqjHP31piCoD7qou-73" value="Submit" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="5Y48MqjHP31piCoD7qou-60">
+          <mxGeometry x="150" y="270" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5Y48MqjHP31piCoD7qou-72" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="5Y48MqjHP31piCoD7qou-54" target="5Y48MqjHP31piCoD7qou-60">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="940" y="135" />
+              <mxPoint x="940" y="370" />
+              <mxPoint x="1040" y="370" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5Y48MqjHP31piCoD7qou-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="5Y48MqjHP31piCoD7qou-73" target="5Y48MqjHP31piCoD7qou-45">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="830" y="685" />
+              <mxPoint x="830" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5Y48MqjHP31piCoD7qou-77" value="Excel Payment Upload" style="swimlane;whiteSpace=wrap;html=1;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="40" width="360" height="300" as="geometry">
+            <mxRectangle x="450" y="40" width="140" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5Y48MqjHP31piCoD7qou-78" value="Navbar" style="whiteSpace=wrap;html=1;" vertex="1" parent="5Y48MqjHP31piCoD7qou-77">
+          <mxGeometry y="30" width="360" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5Y48MqjHP31piCoD7qou-84" value="File Upload Field" style="whiteSpace=wrap;html=1;" vertex="1" parent="5Y48MqjHP31piCoD7qou-77">
+          <mxGeometry x="40" y="105" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5Y48MqjHP31piCoD7qou-85" value="Upload" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="5Y48MqjHP31piCoD7qou-77">
+          <mxGeometry x="40" y="75" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5Y48MqjHP31piCoD7qou-90" value="Submit" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="5Y48MqjHP31piCoD7qou-77">
+          <mxGeometry x="150" y="160" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5Y48MqjHP31piCoD7qou-91" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="5Y48MqjHP31piCoD7qou-90" target="5Y48MqjHP31piCoD7qou-45">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
