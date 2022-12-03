@@ -4,12 +4,14 @@ interface paymentAttrs {
     userId: mongoose.Types.ObjectId;
     phoneId: mongoose.Types.ObjectId;
     amount: number;
+    offerId?: mongoose.Types.ObjectId;
 }
 
 interface PaymentDocument extends mongoose.Document {
     userId: mongoose.Types.ObjectId;
     phoneId: mongoose.Types.ObjectId;
     amount: number;
+    offerId: mongoose.Types.ObjectId;
 }
 
 interface PaymentModel extends mongoose.Model<PaymentDocument> {
@@ -30,6 +32,11 @@ const paymentSchema = new mongoose.Schema({
     amount: {
         type: Number,
         required: true
+    },
+    offerId: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Offer',
+        required: false
     },
     createdAt: {
         type: Date,

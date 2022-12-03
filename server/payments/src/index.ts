@@ -3,21 +3,18 @@ import 'express-async-errors';
 import { json } from 'body-parser';
 import { errorHandler } from './middlewares/error-handler';
 import { NotFoundError } from './errors/not-found-error';
-import { createQRCodeRouter } from './routes/create-qr-code';
 import mongoose from 'mongoose';
-import { createPhoneRouter } from './routes/create-phone';
+import { jwtChecker } from './middlewares/jwt-checker';
 import { createPaymentRouter } from './routes/create-payment';
-import { getPhoneRouter } from './routes/get-phone';
 
 const app = express();
 app.use(json());
 
-app.use(createPhoneRouter);
-app.use(createQRCodeRouter);
-app.use(createPaymentRouter);
-app.use(getPhoneRouter);
+app.use(jwtChecker);
 
-app.all('*', (req, res) => {
+app.use(createPaymentRouter);
+
+app.all('*', () => {
     throw new NotFoundError();
 });
 
@@ -32,7 +29,7 @@ const start = async () => {
     }
 
     app.listen(4002, () => {
-        console.log('Payments lietening on 4002');
+        console.log('Payments listening on 4002');
     });
 }
 

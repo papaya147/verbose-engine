@@ -19,7 +19,7 @@ router.put('/changepass', [
     let token = getToken(req);
     const decoded = validateToken(token);
     if (decoded.userId === undefined)
-        throw new JwtValidationError('missing property in jwt token', 'userId');
+        throw new JwtValidationError('userId');
 
     // checking input errors
     const errors = validationResult(req);
