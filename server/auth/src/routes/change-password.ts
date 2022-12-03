@@ -2,52 +2,43 @@ import express, { Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
 import mongoose from 'mongoose';
 import { BadRequestError } from '../errors/bad-request-error';
+import { JwtValidationError } from '../errors/jwt-validation-error';
 import { RequestValidationError } from '../errors/request-validation-error';
 import { User } from '../models/user-model';
-import { APIKey } from '../services/apikey';
+import { getToken, validateToken } from '../services/jwt';
 import { Password } from '../services/password';
 
 const router = express.Router();
 
-router.put('/auth/changepass', [
-    body('id')
-        .isLength({ min: 24, max: 24 })
-        .isHexadecimal()
-        .withMessage('ID should be a 24 character hexadecimal value'),
+router.put('/changepass', [
     body('email')
         .isEmail()
-        .withMessage('Email not valid'),
-    body('oldPassword')
-        .isLength({ min: 4 })
-        .withMessage('Old password must be at least 4 characters'),
-    body('newPassword')
-        .isLength({ min: 4 })
-        .withMessage('New password must be at least 4 characters'),
+        .withMessage('email not valid')
 ], async (req: Request, res: Response) => {
-    const { key: suppliedKey, secret: suppliedSecret } = req.body;
+    // checking for valid token
+    let token = getToken(req);
+    const decoded = validateToken(token);
+    if (decoded.userId === undefined)
+        throw new JwtValidationError('missing property in jwt token', 'userId');
 
-    const flag = await APIKey.checkKey(suppliedKey, suppliedSecret);
-    if (!flag)
-        throw new BadRequestError('API service unavailable');
-
+    // checking input errors
     const errors = validationResult(req);
     if (!errors.isEmpty())
         throw new RequestValidationError(errors.array());
 
-    const { id, email, oldPassword, newPassword } = req.body;
-    const idObject = new mongoose.Types.ObjectId(id);
-
-    const user = await User.findOne({ _id: id, email });
+    // finding email and password
+    const id = decoded.userId;
+    const { email, oldPassword, newPassword } = req.body;
+    const user = await User.findOne({ _id: new mongoose.Types.ObjectId(id), email });
     if (!user)
-        throw new BadRequestError('ID or email not found');
-
+        throw new BadRequestError('id or email not found');
     if (!await Password.compare(user.password, oldPassword))
-        throw new BadRequestError('Old password incorrect');
-
+        throw new BadRequestError('old password incorrect');
     const hashedPassword = await Password.toHash(newPassword);
-    const mongoRes = await User.findOneAndUpdate({ _id: idObject, email }, { password: hashedPassword });
-    if (!mongoRes)
-        throw new BadRequestError('ID and email do not correspond')
+    await User.findOneAndUpdate(
+        { _id: new mongoose.Types.ObjectId(id), email },
+        { password: hashedPassword }
+    );
 
     res.send({ message: 'updated' });
 });

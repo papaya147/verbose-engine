@@ -25,7 +25,7 @@ app.use(errorHandler);
 
 const start = async () => {
     try {
-        await mongoose.connect("mongodb://127.0.0.1:27017/coupons");
+        await mongoose.connect("mongodb://localhost:27017/coupons");
         console.log("Connected to MongoDb");
     } catch (err) {
         console.error(err);

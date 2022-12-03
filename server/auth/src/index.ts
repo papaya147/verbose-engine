@@ -4,29 +4,28 @@ import mongoose from 'mongoose';
 import { json } from 'body-parser';
 import { NotFoundError } from './errors/not-found-error';
 import { errorHandler } from './middlewares/error-handler';
-import { checkUserRouter } from './routes/check-user';
-import { createUserRouter } from './routes/create-user';
+import { jwtTokenRouter } from './routes/get-jwt-token';
+import { jwtChecker } from './middlewares/jwt-checker';
+import { signUpRouter } from './routes/sign-up';
+import { signInRouter } from './routes/sign-in';
+import { loginRouter } from './routes/login';
 import { changePassRouter } from './routes/change-password';
 import { forgotPassRouter } from './routes/forgot-password';
-import { fetchUserRouter } from './routes/fetch-user';
-import { randomBytes } from 'crypto';
-import { Password } from './services/password';
 
 const app = express();
 app.use(json());
 
-app.use(checkUserRouter);
-app.use(createUserRouter);
+app.use(jwtTokenRouter);
+
+app.use(jwtChecker);
+
+app.use(loginRouter);
+app.use(signUpRouter);
+app.use(signInRouter);
 app.use(changePassRouter);
 app.use(forgotPassRouter);
-app.use(fetchUserRouter);
 
-app.post('/', async (req, res) => {
-    const random = randomBytes(8).toString('hex');
-    console.log(await Password.toHash(random));
-});
-
-app.all('*', (req, res) => {
+app.all('*', () => {
     throw new NotFoundError();
 });
 
@@ -34,7 +33,7 @@ app.use(errorHandler);
 
 const start = async () => {
     try {
-        await mongoose.connect("mongodb://127.0.0.1:27017/coupons");
+        await mongoose.connect("mongodb://localhost:27017/coupons");
         console.log("Connected to MongoDb");
     } catch (err) {
         console.error(err);
