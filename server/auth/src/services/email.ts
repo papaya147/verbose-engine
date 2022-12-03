@@ -9,14 +9,12 @@ export class Email {
                 pass: 'htmnpkarciidjfkl'
             }
         });
-
         const mailOptions = {
             from: 'asrivatsa6@gmail.com',
             to: email,
             subject: subject,
             text: text
         };
-
         transporter.sendMail(mailOptions, (err, info) => {
             if (err)
                 console.log(err);

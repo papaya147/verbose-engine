@@ -9,7 +9,8 @@ import { createUserRouter } from './routes/create-user';
 import { changePassRouter } from './routes/change-password';
 import { forgotPassRouter } from './routes/forgot-password';
 import { fetchUserRouter } from './routes/fetch-user';
-import { getSaltRouter } from './routes/get-salt';
+import { randomBytes } from 'crypto';
+import { Password } from './services/password';
 
 const app = express();
 app.use(json());
@@ -19,7 +20,11 @@ app.use(createUserRouter);
 app.use(changePassRouter);
 app.use(forgotPassRouter);
 app.use(fetchUserRouter);
-app.use(getSaltRouter);
+
+app.post('/', async (req, res) => {
+    const random = randomBytes(8).toString('hex');
+    console.log(await Password.toHash(random));
+});
 
 app.all('*', (req, res) => {
     throw new NotFoundError();
