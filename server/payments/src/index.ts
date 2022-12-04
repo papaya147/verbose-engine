@@ -6,6 +6,8 @@ import { NotFoundError } from './errors/not-found-error';
 import mongoose from 'mongoose';
 import { jwtChecker } from './middlewares/jwt-checker';
 import { createPaymentRouter } from './routes/create-payment';
+import { deletePaymentsRouter } from './routes/delete-payments';
+import { getPhoneRouter } from './routes/get-phone';
 
 const app = express();
 app.use(json());
@@ -13,6 +15,8 @@ app.use(json());
 app.use(jwtChecker);
 
 app.use(createPaymentRouter);
+app.use(getPhoneRouter);
+app.use(deletePaymentsRouter);
 
 app.all('*', () => {
     throw new NotFoundError();

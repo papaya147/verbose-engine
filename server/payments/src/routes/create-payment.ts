@@ -4,7 +4,10 @@ import mongoose from 'mongoose';
 import { RequestValidationError } from '../errors/request-validation-error';
 import { Payment } from '../models/payment-model';
 import { Phone } from '../models/phone-model';
+import { User } from '../models/user-model';
 import { getToken, validateToken } from '../services/jwt';
+import qrcode from 'qrcode';
+import { BadRequestError } from '../errors/bad-request-error';
 
 const router = express.Router();
 
@@ -21,7 +24,7 @@ router.post('/createpayment', [
     body('offerId')
         .matches(/^$|^[0-9a-fA-F]{24}$/)
         .withMessage('offer id invalid'),
-    body('withQR')
+    body('qr')
         .matches(/^$|^true$|^false$/)
         .withMessage('withqr invalid')
 ], async (req: Request, res: Response) => {
@@ -68,7 +71,23 @@ router.post('/createpayment', [
             offerId: new mongoose.Types.ObjectId(offerId)
         }).save();
 
-    res.send({ message: 'created' });
+    // generating qr code if needed
+    const { qr } = req.body;
+    if (qr === 'true' || qr === true) {
+        const user = await User.findOne({ _id: new mongoose.Types.ObjectId(userId) });
+        if (!user)
+            throw new BadRequestError('user not found');
+        if (!user.upiAccount || !user.upiName)
+            throw new BadRequestError('upi account or name invalid for user');
+        const payUrl = `upi://pay?pa=${user.upiAccount}&pn=${user.upiName}&cu=INR&am=${amount}`;
+        qrcode.toString(payUrl, { type: 'svg' }, (err, src) => {
+            if (err)
+                res.send({ message: 'payment created, qr error' });
+            else
+                res.send({ message: 'payment and qr created', qr: src });
+        });
+    } else
+        res.send({ message: 'created' });
 });
 
 export { router as createPaymentRouter };
