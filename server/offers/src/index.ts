@@ -5,13 +5,17 @@ import { errorHandler } from './middlewares/error-handler';
 import mongoose from 'mongoose';
 import { NotFoundError } from './errors/not-found-error';
 import { createOfferRouter } from './routes/create-offer';
+import { jwtChecker } from './middlewares/jwt-checker';
+import { getOffersRouter } from './routes/get-offers';
 
 const app = express();
 app.use(json());
 
+app.use(jwtChecker);
 app.use(createOfferRouter);
+app.use(getOffersRouter);
 
-app.all('*', (req, res) => {
+app.all('*', () => {
     throw new NotFoundError();
 });
 

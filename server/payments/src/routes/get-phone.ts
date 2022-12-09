@@ -6,7 +6,7 @@ import { Phone } from '../models/phone-model';
 
 const router = express.Router();
 
-router.get('/phone', [
+router.get('/phones', [
     query('phoneNumber')
         .isNumeric()
         .isLength({ max: 10 })

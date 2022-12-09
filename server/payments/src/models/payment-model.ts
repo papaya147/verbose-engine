@@ -1,17 +1,19 @@
 import mongoose from "mongoose";
 
 interface paymentAttrs {
-    userId: mongoose.Types.ObjectId;
-    phoneId: mongoose.Types.ObjectId;
+    user: mongoose.Types.ObjectId;
+    phone: mongoose.Types.ObjectId;
     amount: number;
-    offerId?: mongoose.Types.ObjectId;
+    offer?: mongoose.Types.ObjectId;
+    createdAt?: Date;
 }
 
 interface PaymentDocument extends mongoose.Document {
-    userId: mongoose.Types.ObjectId;
-    phoneId: mongoose.Types.ObjectId;
+    user: mongoose.Types.ObjectId;
+    phone: mongoose.Types.ObjectId;
     amount: number;
-    offerId: mongoose.Types.ObjectId;
+    offer: mongoose.Types.ObjectId;
+    createdAt: Date;
 }
 
 interface PaymentModel extends mongoose.Model<PaymentDocument> {
@@ -19,12 +21,12 @@ interface PaymentModel extends mongoose.Model<PaymentDocument> {
 }
 
 const paymentSchema = new mongoose.Schema({
-    userId: {
+    user: {
         type: mongoose.Types.ObjectId,
         ref: 'User',
         required: true
     },
-    phoneId: {
+    phone: {
         type: mongoose.Types.ObjectId,
         ref: 'Phone',
         required: true
@@ -33,7 +35,7 @@ const paymentSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    offerId: {
+    offer: {
         type: mongoose.Types.ObjectId,
         ref: 'Offer',
         required: false
@@ -50,4 +52,4 @@ paymentSchema.statics.build = (attrs: paymentAttrs) => {
 
 const Payment = mongoose.model<PaymentDocument, PaymentModel>('Payment', paymentSchema);
 
-export { Payment };
+export { Payment, PaymentDocument };

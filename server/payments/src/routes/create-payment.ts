@@ -59,16 +59,16 @@ router.post('/createpayment', [
     // creating payment
     if (offerId === undefined || offerId === '')
         Payment.build({
-            userId: new mongoose.Types.ObjectId(userId),
-            phoneId: new mongoose.Types.ObjectId(phoneId),
+            user: new mongoose.Types.ObjectId(userId),
+            phone: new mongoose.Types.ObjectId(phoneId),
             amount
         }).save();
     else
         Payment.build({
-            userId: new mongoose.Types.ObjectId(userId),
-            phoneId: new mongoose.Types.ObjectId(phoneId),
+            user: new mongoose.Types.ObjectId(userId),
+            phone: new mongoose.Types.ObjectId(phoneId),
             amount,
-            offerId: new mongoose.Types.ObjectId(offerId)
+            offer: new mongoose.Types.ObjectId(offerId)
         }).save();
 
     // generating qr code if needed
