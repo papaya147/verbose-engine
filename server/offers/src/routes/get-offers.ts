@@ -1,21 +1,11 @@
 import express from 'express';
-import { Offer } from '../models/offer-model';
+import { Offer, OfferDocument } from '../models/offer-model';
 import { getToken, validateToken } from '../services/jwt';
 
 const router = express.Router();
 
-router.get('/getoffers', async (req, res) => {
-    // fetching user id
-    const userId = validateToken(getToken(req)).userId;
-
-    // fetching offers with user id after current time
-    const offers = await Offer.find({
-        user: userId,
-        startsAt: {
-            $gt: new Date()
-        }
-    });
-    const offersRefined = offers.map(offer => {
+const refineOffers = (offers: OfferDocument[]) => {
+    return offers.map(offer => {
         return {
             id: offer.id,
             type: offer.type,
@@ -25,8 +15,39 @@ router.get('/getoffers', async (req, res) => {
             ends: new Date(offer.expiresAt).toLocaleDateString()
         }
     });
+};
 
-    res.send(offersRefined);
+router.get('/getoffers', async (req, res) => {
+    // fetching user id
+    const userId = validateToken(getToken(req)).userId;
+
+    // fetching offers yet to start with user id after current time
+    const offers_future = await Offer.find({
+        user: userId,
+        startsAt: {
+            $gt: new Date()
+        }
+    }).sort({ startsAt: 'asc' });
+    const offers_past = await Offer.find({
+        user: userId,
+        expiresAt: {
+            $lt: new Date()
+        }
+    }).sort({ startsAt: 'asc' });
+    const offers_present = await Offer.find({
+        user: userId,
+        startsAt: {
+            $lte: new Date()
+        },
+        expiresAt: {
+            $gte: new Date()
+        }
+    }).sort({ startsAt: 'asc' });
+    const future = refineOffers(offers_future);
+    const past = refineOffers(offers_past);
+    const present = refineOffers(offers_present);
+
+    res.send({ past, present, future });
 });
 
 export { router as getOffersRouter };

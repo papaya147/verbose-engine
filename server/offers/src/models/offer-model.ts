@@ -56,4 +56,4 @@ offerSchema.statics.build = (attrs: offerAttrs) => {
 
 const Offer = mongoose.model<OfferDocument, OfferModel>('Offer', offerSchema);
 
-export { Offer };
+export { Offer, OfferDocument };
