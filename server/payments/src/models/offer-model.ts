@@ -1,9 +1,9 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 interface offerAttrs {
     user: mongoose.Types.ObjectId,
     type?: string,
-    amount: number,
+    amount?: number,
     discount: string,
     startsAt: Date,
     expiresAt: Date
@@ -11,7 +11,7 @@ interface offerAttrs {
 
 interface OfferDocument extends mongoose.Document {
     user: mongoose.Types.ObjectId,
-    type?: string,
+    type: string,
     amount: number,
     discount: string,
     startsAt: Date,
@@ -47,10 +47,6 @@ const offerSchema = new mongoose.Schema({
     expiresAt: {
         type: Date,
         required: true
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
     }
 });
 
@@ -60,4 +56,4 @@ offerSchema.statics.build = (attrs: offerAttrs) => {
 
 const Offer = mongoose.model<OfferDocument, OfferModel>('Offer', offerSchema);
 
-export { Offer };
+export { Offer, OfferDocument };

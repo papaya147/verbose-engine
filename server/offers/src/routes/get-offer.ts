@@ -41,7 +41,7 @@ router.get('/getoffer', [
         discount: offer.discount,
         starts: new Date(offer.startsAt).toLocaleDateString(),
         ends: new Date(offer.expiresAt).toLocaleDateString()
-    }
+    };
     res.send(refinedOffer);
 });
 

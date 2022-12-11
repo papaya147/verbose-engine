@@ -4,6 +4,7 @@ interface paymentAttrs {
     user: mongoose.Types.ObjectId;
     phone: mongoose.Types.ObjectId;
     amount: number;
+    usedOffer?: boolean;
     offer?: mongoose.Types.ObjectId;
     createdAt?: Date;
 }
@@ -12,6 +13,7 @@ interface PaymentDocument extends mongoose.Document {
     user: mongoose.Types.ObjectId;
     phone: mongoose.Types.ObjectId;
     amount: number;
+    usedOffer: boolean;
     offer: mongoose.Types.ObjectId;
     createdAt: Date;
 }
@@ -34,6 +36,10 @@ const paymentSchema = new mongoose.Schema({
     amount: {
         type: Number,
         required: true
+    },
+    usedOffer: {
+        type: Boolean,
+        default: false
     },
     offer: {
         type: mongoose.Types.ObjectId,

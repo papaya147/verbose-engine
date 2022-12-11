@@ -9,6 +9,7 @@ import { createPaymentRouter } from './routes/create-payment';
 import { deletePaymentsRouter } from './routes/delete-payments';
 import { getPhoneRouter } from './routes/get-phone';
 import { getPaymentsRouter } from './routes/get-payments';
+import { getOfferByPhNo } from './routes/get-offer-phno';
 
 const app = express();
 app.use(json());
@@ -18,6 +19,7 @@ app.use(createPaymentRouter);
 app.use(getPhoneRouter);
 app.use(getPaymentsRouter);
 app.use(deletePaymentsRouter);
+app.use(getOfferByPhNo);
 
 app.all('*', () => {
     throw new NotFoundError();
