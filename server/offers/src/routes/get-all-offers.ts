@@ -17,7 +17,7 @@ const refineOffers = (offers: OfferDocument[]) => {
     });
 };
 
-router.get('/getoffers', async (req, res) => {
+router.get('/getalloffers', async (req, res) => {
     // fetching user id
     const userId = validateToken(getToken(req)).userId;
 
@@ -50,4 +50,4 @@ router.get('/getoffers', async (req, res) => {
     res.send({ past, present, future });
 });
 
-export { router as getOffersRouter };
+export { router as getAllOffersRouter };
