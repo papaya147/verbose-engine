@@ -10,6 +10,7 @@ import { deletePaymentsRouter } from './routes/delete-payments';
 import { getPhoneRouter } from './routes/get-phone';
 import { getPaymentsRouter } from './routes/get-payments';
 import { getOfferByPhNo } from './routes/get-offer-phno';
+import { useOfferRouter } from './routes/use-offer';
 
 const app = express();
 app.use(json());
@@ -20,6 +21,7 @@ app.use(getPhoneRouter);
 app.use(getPaymentsRouter);
 app.use(deletePaymentsRouter);
 app.use(getOfferByPhNo);
+app.use(useOfferRouter);
 
 app.all('*', () => {
     throw new NotFoundError();
